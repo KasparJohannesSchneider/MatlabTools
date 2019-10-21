@@ -2,10 +2,11 @@ function str = mat2lat(A,bracket)
 % MAT2LAT Matrix to LaTex math mode array conversion
 % https://github.com/KasparJohannesSchneider/mat2lat
 %
-% Author: Kaspar Johannes Schneider
-%         kaspar.sch@outlook.com
+% Author: KJS: Kaspar Johannes Schneider
+%              kaspar.sch@outlook.com
 %
-% Version: 1.0
+% Version: 1.0, KJS, 09 Oct 2019, Initial version
+%          1.1, KJS, 21 Oct 2019, Added proper alignment for complex matrices
 %
 % Examples
 %%%%%%%%%%%
