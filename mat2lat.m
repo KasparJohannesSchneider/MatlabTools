@@ -95,7 +95,7 @@ n = length(A(1,:)); % n columns
 is_complex = norm(imag(A)) > 0;
 
 % Add comment
-str = "% Generated using mat2lat.m v1.0" + newline +...
+str = "% Generated using mat2lat.m v1.1" + newline +...
     '% https://github.com/KasparJohannesSchneider/mat2lat';
 
 % Add begin array
