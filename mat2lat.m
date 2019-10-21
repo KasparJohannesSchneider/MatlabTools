@@ -92,6 +92,7 @@ end
 % Size of Matrix
 m = length(A(:,1)); % m rows
 n = length(A(1,:)); % n columns
+is_complex = norm(imag(A)) > 0;
 
 % Add comment
 str = "% Generated using mat2lat.m v1.0" + newline +...
@@ -100,9 +101,14 @@ str = "% Generated using mat2lat.m v1.0" + newline +...
 % Add begin array
 str = str + newline + '\left'+brktO + '\begin{array}{';
 
-% Add centered columns
-for i=1:n
-    str = str + "c";
+% Column alignment
+if is_complex % If complex, align on sign
+    str = str + "*{" + num2str(n) +...
+        "}{r@{\mskip\medmuskip}c@{\mskip\medmuskip}l}";
+else
+    for i=1:n
+        str = str + "c";
+    end
 end
 str = str + "}" + newline;
 
@@ -113,7 +119,17 @@ entries = strings(m,n); % Contents of the matrix entries
 for i=1:m % Loop through rows
     for j=1:n % Loop through columns
         if isnumeric(A(i,j))
-            entries(i,j) = A(i,j);
+            if is_complex % Complex
+                if imag(A(i,j))<0 % Get the sign of imag(A(i,j))
+                    sign ="} &-& {";
+                else
+                    sign = "} &+& {";
+                end
+                entries(i,j) = real(A(i,j)) + sign +...
+                    abs(imag(A(i,j)))+"j";
+            else % Real
+                entries(i,j) = A(i,j);
+            end
         else % Special case for symbolic matrices
             entries(i,j) = char(A(i,j));
         end
@@ -145,3 +161,4 @@ end
 % End array
 str = str + newline + '\end{array}\right' + brktC;
 end
+
