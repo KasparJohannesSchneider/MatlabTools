@@ -1,6 +1,6 @@
 function str = mat2lat(A,bracket)
 % MAT2LAT Matrix to LaTex math mode array conversion
-% https://github.com/KasparJohannesSchneider/mat2lat
+% https://github.com/KasparJohannesSchneider/MatlabTools
 %
 % Author: KJS: Kaspar Johannes Schneider
 %              kaspar.sch@outlook.com
