@@ -60,45 +60,52 @@ if nargin < 2
     fig = gcf;
 end
 
-% Get all the axes
-axes = get(fig,'children');
+% Get all the children of the figure
+children = get(fig,'children');
 
-% Loop through the axes
-for i=1:length(axes)
-    if isa(axes(i), 'matlab.graphics.axis.Axes')
-        % Select current axis
-        ax = axes(i);
-
+% Loop through the children
+for i=1:length(children)
+    % Select current axis
+    child = children(i);
+    
+    % Test if child is an Axis
+    if isa(child, 'matlab.graphics.axis.Axes')
         % Grid
-        grid(ax, 'minor')
-
+        grid(child, 'minor')
+        
         % Tick labels
-        ax.XAxis.FontSize = 14;
-        ax.YAxis.FontSize = 14;
-        ax.ZAxis.FontSize = 14;
-        ax.TickLabelInterpreter = 'latex';
-
+        child.XAxis.FontSize = 14;
+        child.YAxis.FontSize = 14;
+        child.ZAxis.FontSize = 14;
+        child.TickLabelInterpreter = 'latex';
+        
         % Axis labels
         %************
         % X
-        ax.XAxis.Label.FontSize = 18;
-        ax.XAxis.Label.Interpreter = 'latex';
-        ax.XAxis.Label.String = bold(ax.XAxis.Label.String);
-
+        child.XAxis.Label.FontSize = 18;
+        child.XAxis.Label.Interpreter = 'latex';
+        child.XAxis.Label.String = bold(child.XAxis.Label.String);
+        
         % Y
-        ax.YAxis.Label.FontSize = 18;
-        ax.YAxis.Label.Interpreter = 'latex';
-        ax.YAxis.Label.String = bold(ax.YAxis.Label.String);
-
+        child.YAxis.Label.FontSize = 18;
+        child.YAxis.Label.Interpreter = 'latex';
+        child.YAxis.Label.String = bold(child.YAxis.Label.String);
+        
         % Z
-        ax.ZAxis.Label.FontSize = 18;
-        ax.ZAxis.Label.Interpreter = 'latex';
-        ax.ZAxis.Label.String = bold(ax.ZAxis.Label.String);
-
+        child.ZAxis.Label.FontSize = 18;
+        child.ZAxis.Label.Interpreter = 'latex';
+        child.ZAxis.Label.String = bold(child.ZAxis.Label.String);
+        
         % Title
-        ax.Title.FontSize = 24;
-        ax.Title.Interpreter = 'latex';
-        ax.Title.String = bold(ax.Title.String);
+        child.Title.FontSize = 24;
+        child.Title.Interpreter = 'latex';
+        child.Title.String = bold(child.Title.String);
+    else
+        % Test if child is a Legend
+        if isa(child, 'matlab.graphics.illustration.Legend')
+            child.Interpreter = 'latex';
+            child.FontSize = 18;
+        end
     end
 end
 
