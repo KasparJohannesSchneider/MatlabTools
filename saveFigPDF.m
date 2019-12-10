@@ -65,39 +65,41 @@ axes = get(fig,'children');
 
 % Loop through the axes
 for i=1:length(axes)
-    % Select current axis
-    ax = axes(i);
-    
-    % Grid
-    grid(ax, 'minor')
-    
-    % Tick labels
-    ax.XAxis.FontSize = 14;
-    ax.YAxis.FontSize = 14;
-    ax.ZAxis.FontSize = 14;
-    ax.TickLabelInterpreter = 'latex';
-    
-    % Axis labels
-    %************
-    % X
-    ax.XAxis.Label.FontSize = 18;
-    ax.XAxis.Label.Interpreter = 'latex';
-    ax.XAxis.Label.String = bold(ax.XAxis.Label.String);
-    
-    % Y
-    ax.YAxis.Label.FontSize = 18;
-    ax.YAxis.Label.Interpreter = 'latex';
-    ax.YAxis.Label.String = bold(ax.YAxis.Label.String);
-    
-    % Z
-    ax.ZAxis.Label.FontSize = 18;
-    ax.ZAxis.Label.Interpreter = 'latex';
-    ax.ZAxis.Label.String = bold(ax.ZAxis.Label.String);
-    
-    % Title
-    ax.Title.FontSize = 24;
-    ax.Title.Interpreter = 'latex';
-    ax.Title.String = bold(ax.Title.String);
+    if isa(axes(i), 'matlab.graphics.axis.Axes')
+        % Select current axis
+        ax = axes(i);
+
+        % Grid
+        grid(ax, 'minor')
+
+        % Tick labels
+        ax.XAxis.FontSize = 14;
+        ax.YAxis.FontSize = 14;
+        ax.ZAxis.FontSize = 14;
+        ax.TickLabelInterpreter = 'latex';
+
+        % Axis labels
+        %************
+        % X
+        ax.XAxis.Label.FontSize = 18;
+        ax.XAxis.Label.Interpreter = 'latex';
+        ax.XAxis.Label.String = bold(ax.XAxis.Label.String);
+
+        % Y
+        ax.YAxis.Label.FontSize = 18;
+        ax.YAxis.Label.Interpreter = 'latex';
+        ax.YAxis.Label.String = bold(ax.YAxis.Label.String);
+
+        % Z
+        ax.ZAxis.Label.FontSize = 18;
+        ax.ZAxis.Label.Interpreter = 'latex';
+        ax.ZAxis.Label.String = bold(ax.ZAxis.Label.String);
+
+        % Title
+        ax.Title.FontSize = 24;
+        ax.Title.Interpreter = 'latex';
+        ax.Title.String = bold(ax.Title.String);
+    end
 end
 
 % Ensure that vector graphics are used
