@@ -71,6 +71,7 @@ for i=1:length(children)
     % Test if child is an Axis
     if isa(child, 'matlab.graphics.axis.Axes')
         % Grid
+        grid(child, 'on')
         grid(child, 'minor')
         
         % Tick labels
